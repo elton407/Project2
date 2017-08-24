@@ -42,7 +42,7 @@ app.get('/api', function(req, res, next) {
   res.json({ yelpData: yelpData });
 });
 app.get('/', function(req, res, next) {
-  res.sendFile('public/yelp.html', {root: __dirname })
+  res.sendFile('public/home.html', {root: __dirname })
 });
 app.get('/home', function (req, res) {
   // .. do database stuff
