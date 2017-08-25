@@ -25,7 +25,7 @@ const searchRequest = {
   categories: 'nightlife',
   location: '28.545021 -81.372856',
   sort_by: 'review_count',
-  limit: 5
+  limit: 9
 };
 yelp.accessToken(clientId, clientSecret).then(response => {
   const client = yelp.client(response.jsonBody.access_token);
@@ -44,21 +44,13 @@ app.get('/api', function(req, res, next) {
 app.get('/', function(req, res, next) {
   res.sendFile('public/home.html', {root: __dirname })
 });
-app.get('/home', function (req, res) {
-  // .. do database stuff
-yelp.accessToken(clientId, clientSecret).then(response => {
-  const client = yelp.client(response.jsonBody.access_token);
-  client.search(searchRequest).then(response => {
-    const firstResult = response.jsonBody.businesses;
-    const prettyJson = JSON.stringify(firstResult, null, 4);
-    console.log(prettyJson);
-    yelpData = firstResult;
-    res.send(yelpData.name);
-  });
-}).catch(e => {
-  console.log(e);
+app.get('/events', function(req, res, next) {
+  res.sendFile('public/events.html', {root: __dirname })
 });
-});
+
+
+
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
+
