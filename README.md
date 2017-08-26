@@ -1,8 +1,6 @@
 # Welcome to The Wknd!
 
-!image[The Wknd](/public/assets/images/anton.png)
-
-//@ryan: branch name = editReadMe
+![The Wknd](/public/assets/images/anton.png)
 
 ## Even with modern technology, planning an event with friends can be a major pain...
 
