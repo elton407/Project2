@@ -1,10 +1,26 @@
+// *****************************************************************************
+// Server.js - This file is the initial starting point for the Node/Express server.
+//
+// ******************************************************************************
+// *** Dependencies
+// =============================================================
+
 //'use strict';
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
 var fs = require("fs");
+
+// Sets up the Express App
+// =============================================================
 var app = express();
 var PORT = process.env.PORT || 3000;
+
+// Requiring our models for syncing
+var db = require("./models");
+
+
+// Sets up the Express app to handle data parsing
 var yelpData;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -14,43 +30,19 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({
   type: "application/vnd.api+json"
 }));
+
+// Static directory
 app.use(express.static(__dirname + '/public'));
-const yelp = require('yelp-fusion');
-// Place holders for Yelp Fusion's OAuth 2.0 credentials. Grab them
-// from https://www.yelp.com/developers/v3/manage_app
-const clientId = 'xfb5VIoEJJ8D3t8X8Pqbrw';
-const clientSecret = 'RXSQ6kJQ7a0hNX01jOTArfmxlyL6DMFCX5RUnZsZi2DT2sXamNq0joF4vlva1w51';
-const searchRequest = {
-  //term:'bar',
-  categories: 'nightlife',
-  location: '28.545021 -81.372856',
-  sort_by: 'review_count',
-  limit: 9
-};
-yelp.accessToken(clientId, clientSecret).then(response => {
-  const client = yelp.client(response.jsonBody.access_token);
-  client.search(searchRequest).then(response => {
-    const firstResult = response.jsonBody.businesses;
-    const prettyJson = JSON.stringify(firstResult, null, 4);
-    console.log(prettyJson);
-    yelpData = firstResult;
+// Routes
+// =============================================================
+require("./routes/html-routes.js")(app);
+require("./routes/event-api-routes.js")(app);
+// require("./routes/post-api-routes.js")(app);
+
+// Syncing our sequelize models and then starting our Express app
+// =============================================================
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
   });
-}).catch(e => {
-  console.log(e);
 });
-app.get('/api', function(req, res, next) {
-  res.json({ yelpData: yelpData });
-});
-app.get('/', function(req, res, next) {
-  res.sendFile('public/home.html', {root: __dirname })
-});
-app.get('/events', function(req, res, next) {
-  res.sendFile('public/events.html', {root: __dirname })
-});
-
-
-
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
-});
-
