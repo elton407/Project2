@@ -1,7 +1,7 @@
-//Dependencies
-var express = require("express");
-var router = express.Router();
-var db = require("../models/");
+// //Dependencies
+// var express = require("express");
+// var router = express.Router();
+// var db = require("../models/");
 
 /////events/////
 //Note: the below may be optional as it is returning the information...
@@ -93,5 +93,5 @@ $(document).ready(function(){
 });
 
 
-// export
-module.exports = router;
+// // export
+// module.exports = router;
