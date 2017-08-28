@@ -1,78 +1,51 @@
+var ROW_SIZE = 4;
 
-  // $("#my_select").on('change',function(){
- //    var getValue =$(this).val();
- //    alert(getValue);
- //    category = getValue;
- //    console.log(category);
- //  });
- // alert('hello');
- var currentURL = window.location.origin;
- console.log(currentURL);
- $.ajax({ url: currentURL + "/api", method: "GET" })
- .done(function(results) {
-        // Here we are logging the URL so we have access to it for troubleshooting
-        console.log("------------------------------------");
-        console.log("URL: " + currentURL + "/all");
-        console.log("------------------------------------");
-        // Here we then log the NYTData to console, where it will show up as an object.
-        console.log(results);
+function appendText() {
+    $.ajax({ url: "/api", method: "GET" })
+        .done(function (results) {
+            //console.log("get /api results:", results);
+            
+            var data = results.yelpData;
+            
+            // Create a jquery object to hold events div from home.html
+            var $eventHolder = $("#events");
 
+            // For each data item
+            $.each(data, function (key) {
+                // Build event object                
+                var $eventData = $('<div>').addClass("thumbnail").addClass("col-sm-6 col-md-4");
+                var $eventLocation = $('<p>').text(data[key].location.display_address);
+                var $eventName = $('<h5>').text(data[key].name);
+                var $eventImage = $('<img>').attr('src', data[key].image_url);
+                var $eventButton = $('<a>')
+                    .attr('href', '#')
+                    .addClass("btn btn-primary")
+                    .addClass("go")
+                    .attr('role', 'button')
+                    .text("Go!");
 
-        for (var i = 0; i < results.yelpData.length; i++) {
-          console.log("results:", results.yelpData[i].name);
-          console.log("imgLink:", results.yelpData[i].image_url);
-          console.log("results:", results.yelpData[i].location);
-
-
-          
-
-
-          console.log(results.yelpData[0].name);
-
-          function appendText() {
-            // var txt1 = "<h1>"+results.yelpData[i].name+"</h1>";               // Create element with HTML  
-            // var txt2 = $("<p></p>").text(results.yelpData[i].image_url);   // Create with jQuery
-            // var txt3 = "<p>"+results.yelpData[i].location.address1+"</p>"; 
-            // var txt4 = "<p>"+results.yelpData[i].location.city+"</p>"
-            // var txt5 = "<p>"+results.yelpData[i].location.state+"</p>"
-            // $("body").append(txt1, txt2, txt3, txt4, txt5);      // Append the new elements 
-
-            var newDiv = $('<div class = "col-lg-4 id="imgdiv">');
-            var newPara = "<h4>"+results.yelpData[i].name+"</h4>";
-            var newEvent = $('<img>');
-            var locationAddy = "<p>"+results.yelpData[i].location.display_address+"</p>";
-
-            newEvent.attr("src", results.yelpData[i].image_url);
-
-            newEvent.addClass("eventImage");
-
-            $(newPara).appendTo(newDiv);
-            $(newEvent).appendTo(newDiv);
-            $(locationAddy).appendTo(newDiv);
-            $("#events").append(newDiv);
-          }
-
-
-          appendText();
-        }
-      });
-
-
-function changePlaceholder () {
-  $(".form-control").val("anytext");
- console.log('hello');
+                // Append everything
+                $eventData.append($eventName);
+                $eventData.append($eventImage);
+                $eventData.append($eventLocation);
+                $eventData.append($eventButton);
+                
+                // Create new row if needed
+                if (key === 0 || (key) % ROW_SIZE === 0) {
+                    var $eventRow = $("<div>")
+                        .addClass("row")
+                        .attr('id', key);
+                    
+                    // Append new row to events div                   
+                    $eventHolder.append($eventRow);
+                }
+                // Append event data div to the last row in events div
+                $('#events .row').last().append($eventData);
+            });
+        })
 }
- 
- changePlaceholder();
 
-
-// .val("").focus().blur()
-//     function appendText() {
-//     var txt1 = "<p>Text.</p>";               // Create element with HTML  
-//     var txt2 = $("<p></p>").text("Text.");   // Create with jQuery
-//     var txt3 = document.createElement("p");  // Create with DOM
-//     txt3.innerHTML = "Text.";
-//     $("body").append(txt1, txt2, txt3);      // Append the new elements 
-// }
-
-// appendText();
+$(document).ready(function () {
+    console.log("ready!");
+    appendText();
+});
