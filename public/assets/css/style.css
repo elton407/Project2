@@ -16,9 +16,9 @@ button {
 }
 
 .thumbnail {
-	height: 200px;
+	height: 350px;
 	width: 200px;
-	padding: 10px;
+	margin: 30px;
 }
 
 #PINvitation {
@@ -30,8 +30,13 @@ button {
 	width: 150px;
 }
 
-.eventImage {
-	height: 200px;
-	width: 200px;
+p {
+	font-size: small ;
+	padding: 10px;
+}
 
+.go {
+	position: absolute;
+	left: 0;
+	bottom: 0;
 }
