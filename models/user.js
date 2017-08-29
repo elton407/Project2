@@ -1,23 +1,25 @@
-//Wknd models
-// Create table for User
-module.exports = function(sequelize, DataTypes) {
-    var User = sequelize.define("User", {
+module.exports = function (sequelize, DataTypes) {
+    var Users = sequelize.define("Users", {
         user_name: {
             type: DataTypes.STRING
         },
+
         email: {
             type: DataTypes.STRING
         },
+        
         mobile_number: {
-            type: DataTypes.STRING
+            type: DataTypes.INTEGER
         }
     })
-    User.associate = function(models) {
+
+    Users.associate = function (models) {
         // Associating Author with Posts
         // When an Author is deleted, also delete any associated Posts
-        User.hasMany(models.Event);
-        User.hasMany(models.Guest);
-      };
-    
-      return User;
-};
+        Users.hasMany(models.Event);
+        Users.hasMany(models.Guest);
+    };
+
+    return Users;
+
+}; //closes the entire modal 

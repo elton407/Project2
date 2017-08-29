@@ -133,21 +133,34 @@ $(document).on('click','#copySave',function(){
 
 });
 
-// $(document).on('click','#copySave',function(){
-//   //alert('je');
-//   var dbPlace = $('div.modal-body h4.modalBody').html()
-//   var dbLoca = $('div.modal-body h3.modalBody').html()
-//   var dbTime = $('#locationName').val();
-//   var dbDate = $('#eventDate').val();
-//   alert(dbPlace);
-//   alert(dbLoca);
-//   alert(dbTime);
-//   alert(dbDate);
+$(document).on('click','#pinBtn',function(){
+  //alert('je');
+   var dbUserName = $('input#userName').val();
+   //alert(dbUserName);
+  var dbEmail = $('input#userEmail').val();
+  alert(dbEmail);
+   var dbCell = $('input#userCell').val();
+   alert(dbCell);
+  // var dbDate = $('#eventDate').val();
+  // alert(dbPlace);
+  // alert(dbLoca);
+  // alert(dbTime);
+  // alert(dbDate);
+  $.post("/user/create", //Required URL of the page on server
+  { // Data Sending With Request To Server
+    user_name: dbUserName,
+    email: dbEmail,
+    mobile_number: dbCell
+    // event_date: dbDate
+  },
+  function (response, status) { // Required Callback Function      
+    console.log("response:", response);
+  });
 
-// });
-// function saveEvent(){
-//   $('#myModal').modal('show')
-// };
+});
+
+
+
 
 
 
