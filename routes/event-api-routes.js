@@ -44,8 +44,9 @@ app.get('/home', function (req, res) {
       yelpData = firstResult;
       res.send(yelpData.name);
     });
-  }).catch(e => {
-    console.log(e);
-  });
+  // }).catch(e => {
+  //   console.log(e);
+  // });
 });
+})
 };

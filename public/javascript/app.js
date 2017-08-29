@@ -78,7 +78,7 @@ var currentURL = window.location.origin;
     var test = 'test';
 
 
-    var newPara = "<h4 class='modalBody'>"+concatPlace+"</h4>";
+    var newPara = "<h4 class='modalBody' name = 'eventName'>"+concatPlace+"</h4>";
     var newParaLoca = "<h3 class='modalBody'>"+concatLoca+"</h4>";
     var newEvent = $('<img class="modalImg">');
     newEvent.attr('src', concatImg);
