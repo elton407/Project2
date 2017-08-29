@@ -21,7 +21,7 @@ module.exports = function (sequelize, DataTypes) {
     Comments.associate = function (models) {
         // Associating Author with Posts
         // When an Author is deleted, also delete any associated Posts
-        Comments.belongsTo(models.User, {
+        Comments.belongsTo(models.Users, {
             foreignKey: {
                 allowNull: false
             }

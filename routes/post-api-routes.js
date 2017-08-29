@@ -14,8 +14,34 @@ module.exports = function (app) {
             // pass the result of our call
             .then(function (results) {
                 // log the result to our terminal/bash window
-                res.json({ testData: results });
+                //res.json({ testData: results });
                 console.log(results);
             });
     })
+
+    app.post("/user/create", function (req, res) {
+        console.log("post req.body:", req.body);
+
+        db.Users.create({
+            user_name: req.body.user_name,
+            email: req.body.email
+            // event_time: req.body.event_time,
+            // event_date: req.body.event_date,
+            // PINvitation: ""
+        })
+            // pass the result of our call
+            .then(function (results) {
+                // log the result to our terminal/bash window
+                //res.json({ testData: results });
+                console.log(results);
+            });
+    })
+
+
+
+
+
+
+
+
 };

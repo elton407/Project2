@@ -193,6 +193,22 @@ router.post("/event/create", function(req, res) {
   });
 });
 
+
+router.post("/user/create", function(req, res) {
+  // edited burger create to add in a burger_name
+  db.Users.create({
+    user_name: "test"
+  })
+    // pass the result of our call
+  .then(function(dbBurger) {
+      // log the result to our terminal/bash window
+    console.log(dbBurger);
+      // redirect
+    res.redirect("/");
+  });
+});
+
+
 // // put route to devour a burger
 // router.put("/burgers/update", function(req, res) {
 //   // update one of the burgers
