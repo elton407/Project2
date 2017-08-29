@@ -1,4 +1,5 @@
 
+
  var currentURL = window.location.origin;
  console.log(currentURL);
  $.ajax({ url: currentURL + "/api", method: "GET" })
@@ -21,12 +22,13 @@
 
           function appendText() {
             
-            //var newDiv = $('<div id="imgdiv'+i+'">').addClass("thumbnail").addClass("col-sm-6 col-md-4");
-            var newDiv= $('<div class = "col-lg-4 col-sm-6"  id="imgdiv'+i+'">');
+            // var newDiv= $('<div class = "col-lg-4 col-sm-6" id="imgdiv'+i+'">').addClass("thumbnail").addClass("col-sm-6 col-md-4");
+            var newDiv = $('<div id="imgdiv'+i+'">').addClass("thumbnail").addClass("col-sm-6 col-md-4");
+            // var newDiv= $('<div class = "col-lg-4 col-sm-6"  id="imgdiv'+i+'">');
             var newPara = "<h4 class='myHeader'>"+results.yelpData[i].name+"</h4>";
-            var newEvent = $('<img>');
+            var newEvent = $('<img>').addClass("pic");
             var locationAddy = "<p class ='location'>"+results.yelpData[i].location.display_address+"</p>";
-            var button = '<button type="button" id ="testBtn'+i+'"  class="btn btn-primary">List Event</button>';
+            var button = '<button type="button" class="btn btn-primary" id ="testBtn'+i+'" >Create Event</button>';
 
             newEvent.attr("src", results.yelpData[i].image_url);
 
@@ -79,7 +81,7 @@ var currentURL = window.location.origin;
 
 
     var newPara = "<h4 class='modalBody'>"+concatPlace+"</h4>";
-    var newParaLoca = "<h3 class='modalBody'>"+concatLoca+"</h4>";
+    var newParaLoca = "<h3 class='modalBody'>"+concatLoca+"</h3>";
     var newEvent = $('<img class="modalImg">');
     newEvent.attr('src', concatImg);
 
@@ -117,7 +119,18 @@ $(document).on('click','#copySave',function(){
 
 });
 
+$(document).on('click','#copySave',function(){
+  //alert('je');
+  var dbPlace = $('div.modal-body h4.modalBody').html()
+  var dbLoca = $('div.modal-body h3.modalBody').html()
+  var dbTime = $('#locationName').val();
+  var dbDate = $('#eventDate').val();
+  alert(dbPlace);
+  alert(dbLoca);
+  alert(dbTime);
+  alert(dbDate);
 
+});
 // function saveEvent(){
 //   $('#myModal').modal('show')
 // };

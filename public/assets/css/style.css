@@ -22,8 +22,8 @@ button {
 	background-color: #f09b1c; 
 	color: black;
 	position: absolute;
-	left: 0;
-	bottom: 0;
+	left: 50px;
+	bottom: 10px;
 }
 
 .thumbnail {
@@ -32,9 +32,9 @@ button {
 	margin: 30px;
 }
 
-img {
-	height: 250px;
-	width: 100;
+.pic {
+	height: 150px;
+	width: 150px;
 }
 
 #PINvitation {
@@ -53,3 +53,6 @@ img {
 
 }
 
+.location{
+	padding: 10px;
+}
