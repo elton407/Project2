@@ -90,6 +90,7 @@ var currentURL = window.location.origin;
     newEvent.attr('src', concatImg);
 
     $('.modal-body').empty();
+    $('.modal-body2').empty();
     $('.modal-body').append(newPara);
     $('.modal-body').append(newParaLoca);
     $('.modal-body').append(newEvent);
@@ -110,16 +111,22 @@ function scroll(){
 // $('button#copySave').on('click', function(){
   
 // });
+
 $(document).on('click','#copySave',function(){
   //alert('je');
   var dbPlace = $('div.modal-body h4.modalBody').html()
   var dbLoca = $('div.modal-body h3.modalBody').html()
   var dbTime = $('#locationName').val();
   var dbDate = $('#eventDate').val();
-  alert(dbPlace);
-  alert(dbLoca);
-  alert(dbTime);
-  alert(dbDate);
+  // alert(dbPlace);
+  // alert(dbLoca);
+  // alert(dbTime);
+  // alert(dbDate);
+
+  var newText = ("Hey, one of your friends is using the app wknd website and wants to tell you that your invited to " +dbPlace+ " on " +dbDate+ " at " + dbTime + " located at: " + dbLoca+ " Use pin: '406345' to access group!" );
+  $('.modal-body2').append(newText);
+
+
   $.post("/event/create", //Required URL of the page on server
   { // Data Sending With Request To Server
     event_name: dbPlace,
@@ -138,9 +145,9 @@ $(document).on('click','#pinBtn',function(){
    var dbUserName = $('input#userName').val();
    //alert(dbUserName);
   var dbEmail = $('input#userEmail').val();
-  alert(dbEmail);
+  //alert(dbEmail);
    var dbCell = $('input#userCell').val();
-   alert(dbCell);
+   //alert(dbCell);
   // var dbDate = $('#eventDate').val();
   // alert(dbPlace);
   // alert(dbLoca);
