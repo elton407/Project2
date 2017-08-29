@@ -19,6 +19,8 @@ var PORT = process.env.PORT || 3000;
 // Requiring our models for syncing
 var db = require("./models");
 
+// var routes = require("./controllers/controller");
+// app.use("/", routes);
 
 // Sets up the Express app to handle data parsing
 var yelpData;
@@ -37,7 +39,7 @@ app.use(express.static(__dirname + '/public'));
 // =============================================================
 require("./routes/html-routes.js")(app);
 require("./routes/event-api-routes.js")(app);
-// require("./routes/post-api-routes.js")(app);
+require("./routes/post-api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
