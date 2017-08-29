@@ -21,8 +21,8 @@
 
           function appendText() {
             
-
-            var newDiv= $('<div class = "col-lg-4 col-sm-6" id="imgdiv'+i+'">');
+            //var newDiv = $('<div id="imgdiv'+i+'">').addClass("thumbnail").addClass("col-sm-6 col-md-4");
+            var newDiv= $('<div class = "col-lg-4 col-sm-6"  id="imgdiv'+i+'">');
             var newPara = "<h4 class='myHeader'>"+results.yelpData[i].name+"</h4>";
             var newEvent = $('<img>');
             var locationAddy = "<p class ='location'>"+results.yelpData[i].location.display_address+"</p>";
@@ -79,7 +79,7 @@ var currentURL = window.location.origin;
 
 
     var newPara = "<h4 class='modalBody'>"+concatPlace+"</h4>";
-    var newParaLoca = "<h4 class='modalBody'>"+concatLoca+"</h4>";
+    var newParaLoca = "<h3 class='modalBody'>"+concatLoca+"</h4>";
     var newEvent = $('<img class="modalImg">');
     newEvent.attr('src', concatImg);
 
@@ -101,7 +101,21 @@ function scroll(){
 }, 1000);
 };
 
+// $('button#copySave').on('click', function(){
+  
+// });
+$(document).on('click','#copySave',function(){
+  //alert('je');
+  var dbPlace = $('div.modal-body h4.modalBody').html()
+  var dbLoca = $('div.modal-body h3.modalBody').html()
+  var dbTime = $('#locationName').val();
+  var dbDate = $('#eventDate').val();
+  alert(dbPlace);
+  alert(dbLoca);
+  alert(dbTime);
+  alert(dbDate);
 
+});
 
 
 // function saveEvent(){
