@@ -41,6 +41,11 @@ require("./routes/html-routes.js")(app);
 require("./routes/event-api-routes.js")(app);
 require("./routes/post-api-routes.js")(app);
 
+// Routes for comments/message board
+// =============================================================
+// require("./routes/api-routes.js")(app);
+// require("./routes/comment-html-routes.js")(app);
+
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({ force: false }).then(function() {

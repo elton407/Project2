@@ -208,6 +208,21 @@ router.post("/user/create", function(req, res) {
   });
 });
 
+router.post("/comment/create", function(req, res) {
+  // edited burger create to add in a burger_name
+  db.Comments.create({
+    comment_body: "test"
+  })
+    // pass the result of our call
+  .then(function(dbBurger) {
+      // log the result to our terminal/bash window
+    console.log(dbBurger);
+      // redirect
+    res.redirect("/event");
+  });
+});
+
+
 
 // // put route to devour a burger
 // router.put("/burgers/update", function(req, res) {
