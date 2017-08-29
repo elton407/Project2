@@ -120,21 +120,31 @@ $(document).on('click','#copySave',function(){
   alert(dbLoca);
   alert(dbTime);
   alert(dbDate);
+  $.post("/event/create", //Required URL of the page on server
+  { // Data Sending With Request To Server
+    event_name: dbPlace,
+    event_location: dbLoca,
+    event_time: dbTime,
+    event_date: dbDate
+  },
+  function (response, status) { // Required Callback Function      
+    console.log("response:", response);
+  });
 
 });
 
-$(document).on('click','#copySave',function(){
-  //alert('je');
-  var dbPlace = $('div.modal-body h4.modalBody').html()
-  var dbLoca = $('div.modal-body h3.modalBody').html()
-  var dbTime = $('#locationName').val();
-  var dbDate = $('#eventDate').val();
-  alert(dbPlace);
-  alert(dbLoca);
-  alert(dbTime);
-  alert(dbDate);
+// $(document).on('click','#copySave',function(){
+//   //alert('je');
+//   var dbPlace = $('div.modal-body h4.modalBody').html()
+//   var dbLoca = $('div.modal-body h3.modalBody').html()
+//   var dbTime = $('#locationName').val();
+//   var dbDate = $('#eventDate').val();
+//   alert(dbPlace);
+//   alert(dbLoca);
+//   alert(dbTime);
+//   alert(dbDate);
 
-});
+// });
 // function saveEvent(){
 //   $('#myModal').modal('show')
 // };

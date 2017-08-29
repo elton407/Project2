@@ -2,11 +2,14 @@ var db = require("../models/");
 
 module.exports = function (app) {
     app.post("/event/create", function (req, res) {
+        console.log("post req.body:", req.body);
 
         db.Event.create({
-            event_name: req.body.eventName
-            //console.log(req.body.h4.modalBody);
-            //PINvitation: 123456
+            event_name: req.body.event_name,
+            event_location: req.body.event_location,
+            event_time: req.body.event_time,
+            event_date: req.body.event_date,
+            PINvitation: ""
         })
             // pass the result of our call
             .then(function (results) {
