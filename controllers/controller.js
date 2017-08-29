@@ -5,21 +5,21 @@
 
 /////events/////
 //Note: the below may be optional as it is returning the information...
-router.get("/events", function(req, res){
-    db.events.findAll()
-    .then(function(wknd){
-        var hbsObject = { event: wknd };
-        return res.render("event", hbsObject);
-    });
-});
+// router.get("/events", function(req, res){
+//     db.events.findAll()
+//     .then(function(wknd){
+//         var hbsObject = { event: wknd };
+//         return res.render("event", hbsObject);
+//     });
+// });
 
 //The below will take the information from the events page and update it in the database.
 $(document).ready(function(){
-    var eventName = $(#eventName);
-    var locationName = $(#locationName);
-    var eventDate = $(#eventDate);
-    var eventTime = $(#eventTime);
-    var locationAddress = $(locationAddress);
+    var eventName = $("#eventName");
+    var locationName = $("#locationName");
+    var eventDate = $("#eventDate");
+    var eventTime = $("#eventTime");
+    var locationAddress = $("#locationAddress");
     $(document).on("submit",".btn btn-primary", handleEventFormSubmit);
 
     function handleEventFormSubmit(event){
@@ -40,13 +40,13 @@ $(document).ready(function(){
         $.post("/api/events", eventData)
             .then(getEvent);
     }
-};
+})
 
 /////guest/////
 //The below will modify the boolean value for whether or not someone is attending an event.
 $(document).ready(function(){
     //NOTE: we need to add ID to the accept
-    var attending = $(#confirmAttending);
+    var attending = $("#confirmAttending");
     //NOTE: we need to discuss what buttons we will be using for this.
     $(document).on("select", "#confirmAttendence", handleAttendingFormSubmit);
 
@@ -58,7 +58,8 @@ $(document).ready(function(){
 
     // function updateAttending(guestData){
     //     $.post()
-    // }
+   
+ }
 });
 
 
@@ -68,15 +69,15 @@ $(document).ready(function(){
 //The below will take the information from the user entered data and put it into the mysql database
 $(document).ready(function(){
     //NOTE: grab correct input IDs when we meet.
-    var userName = $(#userName);
-    var email = $(#email);
-    var mobileNumber = $(#mobileNumber);
+    var userName = $("#userName");
+    var email = $("#email");
+    var mobileNumber = $("#mobileNumber");
     //NOTE: grab correct submit ID.
     $(document).on("submit",".btn btn-primary", handleUserFormSubmit);
 
     function handleUserFormSubmit(event){
         event.preventDefault();
-        if (!userName.val().trim().trim()){
+        if (!userName.val().trim()){
             return;
         }
         upsertUser({
@@ -91,6 +92,65 @@ $(document).ready(function(){
             .then(getUser);
     }
 });
+
+/////Comments/////
+//The below code will route the comments and post them to the page
+$(document).ready(function(){
+    var nameInput = $("#userName");
+    var commentBody = $("#commentBody")
+    var commentForm =("#commentForm");
+    $(commentForm).on("submit", handleCommentSubmit);
+
+    function handleCommentSubmit(event) {
+        event.preventDefault();
+        if (!nameInput.val().trim() || !commentBody.val().trim()){
+            return;
+        }
+        upertNewComment({
+            name: userName,
+            comment_body: commentBody
+                .val()
+                .trim()
+        })
+
+        function upsertNewComment(commentsData){
+            $.post("api/comments", commentsData)
+                .then(getComments);
+        }
+
+    };
+    //Building the comment section
+    function getComments(){
+        $.get("/api/comments", renderCommentList);
+    }
+    function renderCommentList(data) {
+        if(!data.length){
+            window.location.href = "/comments";
+        }
+        $(".hidden").removeClass("hidden");
+        var rowsToAdd = [];
+        for (var i = 0; i < data.length; i++) {
+            rowsToAdd.push(createCommentsList(data[i]));
+        }
+        commentSelect.empty();
+        commentSelect.append(rowsToAdd);
+        commentSelect.val(userName);
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // // export
