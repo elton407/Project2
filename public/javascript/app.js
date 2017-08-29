@@ -159,6 +159,34 @@ $(document).on('click','#pinBtn',function(){
 
 });
 
+$(document).on('click','#commentBtn',function(){
+  //alert('je');
+   var dbCommentBody = $('input#body').val();
+   alert(dbCommentBody);
+   //alert(dbUserName);
+  // var dbEmail = $('input#userEmail').val();
+  // alert(dbEmail);
+  //  var dbCell = $('input#userCell').val();
+  //  alert(dbCell);
+  // var dbDate = $('#eventDate').val();
+  // alert(dbPlace);
+  // alert(dbLoca);
+  // alert(dbTime);
+  // alert(dbDate);
+  // $.post("/user/create", //Required URL of the page on server
+  // { // Data Sending With Request To Server
+  //   user_name: dbUserName,
+  //   email: dbEmail,
+  //   mobile_number: dbCell
+  //   // event_date: dbDate
+  // },
+  // function (response, status) { // Required Callback Function      
+  //   console.log("response:", response);
+  // });
+
+});
+
+
 
 
 

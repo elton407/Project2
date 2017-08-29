@@ -38,7 +38,18 @@ module.exports = function (app) {
     })
 
 
-
+// POST route for saving a new post
+  app.post("/comment/create", function(req, res) {
+    console.log(req.body);
+    db.Comments.create({
+      // eventPINvitation: req.body.eventPINvitation,
+      comment_body: req.body.comment_body
+      // name: req.body.commenterName
+    })
+    .then(function(dbPost) {
+      // res.json(dbPost);
+    });
+  });
 
 
 
