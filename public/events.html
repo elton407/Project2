@@ -13,7 +13,7 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/readable/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/readable/bootstrap.min.css">
 
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
@@ -26,7 +26,7 @@
 
 		<div class="row">
 			<div class="col-xs-2">
-				<a href= "/home.html"><img id="logo" src="assets/images/anton.png" alt="logo"></a>
+				<img src="assets/images/anton.png" alt="logo" id="logo">
 			</div>
 			<div class="col-xs-10"></div>
 
@@ -60,7 +60,7 @@
 						<label for="locationAddress">Location Address</label>
 						<input type="text" class="form-control" id="locationAddress" placeholder="Location Address">
 					</div>
-					<button type="button" class="btn btn-primary" id = "saveEvent" onclick="saveEvent()">Save</button>
+					<button type="button" class="btn btn-primary" onclick="saveEvent()">Save</button>
 					<button type="button" class="btn btn-primary" onclick="populateEvent()">Autofill</button>
 
 					
@@ -119,7 +119,7 @@
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
         <!-- <button type="button" class="btn btn-success" id="copySave">COPY</button> -->
-        <button type="button" id="copySave">Click Me!</button>
+        
       </div>
     </div>
   </div>
