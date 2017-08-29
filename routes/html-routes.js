@@ -19,12 +19,12 @@ module.exports = function(app) {
 
   // cms route loads cms.html
   app.get("/event", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/event.html"));
+    res.sendFile(path.join(__dirname, "../public/events.html"));
   });
 
   // blog route loads blog.html
   app.get("/PIN", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/PIN.html"));
+    res.sendFile(path.join(__dirname, "../public/PINvitation.html"));
   });
 
   
