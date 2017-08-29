@@ -1,3 +1,5 @@
+
+
 #logo {
 	height: 50px; 
 	width: 50px;
@@ -12,13 +14,27 @@
 }
 
 button {
-	background-color: gray;
+	background-color: #f09b1c; 
+	color: black;
+}
+
+#testBtn0,#testBtn1,#testBtn2,#testBtn3,#testBtn4,#testBtn5,#testBtn6,#testBtn7,#testBtn8 {
+	background-color: #f09b1c; 
+	color: black;
+	position: absolute;
+	left: 0;
+	bottom: 0;
 }
 
 .thumbnail {
-	height: 200px;
+	height: 350px;
 	width: 200px;
-	padding: 10px;
+	margin: 30px;
+}
+
+img {
+	height: 250px;
+	width: 100;
 }
 
 #PINvitation {
@@ -30,14 +46,10 @@ button {
 	width: 150px;
 }
 
-.eventImage {
-	height: 200px;
-	width: 200px;
-
-}
 
 .modalImg {
 	height: 200px;
 	width: 200px;
 
 }
+
